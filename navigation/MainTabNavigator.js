@@ -76,9 +76,6 @@ const tabNavigator = createMaterialTopTabNavigator({
   },
 });
 
-
-
-
 tabNavigator.path = "";
 
 export default tabNavigator;
