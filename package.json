@@ -8,6 +8,9 @@
     "eject": "expo eject",
     "test": "jest --watchAll"
   },
+ "eslintConfig": {
+    "extends": "react-app"
+ },
   "jest": {
     "preset": "jest-expo"
   },
