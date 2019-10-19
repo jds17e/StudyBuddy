@@ -2,7 +2,8 @@ import React from "react";
 import { Platform } from "react-native";
 import {
   createStackNavigator,
-  createBottomTabNavigator
+  createBottomTabNavigator,
+  createMaterialTopTabNavigator
 } from "react-navigation";
 
 import TabBarIcon from "../components/TabBarIcon";
@@ -10,16 +11,10 @@ import HomeScreen from "../screens/HomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 
-const config = Platform.select({
-  web: { headerMode: "screen" },
-  default: {}
-});
-
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen
   },
-  config
 );
 
 HomeStack.navigationOptions = {
@@ -42,7 +37,6 @@ const ProfileStack = createStackNavigator(
   {
     Profile: ProfileScreen
   },
-  config
 );
 
 ProfileStack.navigationOptions = {
@@ -57,30 +51,33 @@ ProfileStack.navigationOptions = {
 
 ProfileStack.path = "";
 
-const SettingsStack = createStackNavigator(
-  {
-    Settings: SettingsScreen
-  },
-  config
-);
-
-SettingsStack.navigationOptions = {
-  tabBarLabel: "Settings",
-  tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === "ios" ? "ios-options" : "md-options"}
-    />
-  )
-};
-
-SettingsStack.path = "";
-
-const tabNavigator = createBottomTabNavigator({
+const tabNavigator = createMaterialTopTabNavigator({
   HomeStack,
   ProfileStack,
-  SettingsStack
+},
+
+{
+  tabBarPosition: 'bottom',
+  tabBarOptions: {
+    activeTintColor: 'black',
+    inactiveTintColor: 'grey',
+    showIcon: true,
+    style: {
+      backgroundColor: '#FFFFFF',
+      height: '8%',
+    },
+    indicatorStyle: {
+      height: 0,
+    },
+    labelStyle: {
+      fontSize: 12,
+      fontWeight: 'bold',
+    },
+  },
 });
+
+
+
 
 tabNavigator.path = "";
 
