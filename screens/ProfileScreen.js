@@ -37,29 +37,6 @@ export default function ProfileScreen() {
             <Text style={styles.name}>Lucas Albano</Text>
           </View>
         </View>
-
-        <View style={styles.infoContainer}>
-          <View style={styles.infoBox}>
-            <View style={styles.titleContainer}>
-              <Text style={styles.classes}>Classes</Text>
-              <Divider />
-            </View>
-
-            <View style={styles.cards}>
-              {courses.map(course => (
-                <TouchableOpacity
-                  key={course.courseCode}
-                  style={styles.cardContainer}
-                  onPress={() => setVisible(true)}
-                >
-                  <Card containerStyle={styles.card}>
-                    <Text>{course.courseCode}</Text>
-                  </Card>
-                </TouchableOpacity>
-              ))}
-            </View>
-          </View>
-        </View>
       </ScrollView>
       <Modal
         isVisible={isVisible}
@@ -74,6 +51,23 @@ export default function ProfileScreen() {
           <Text>Test</Text>
         </View>
       </Modal>
+      <View style={styles.infoContainer}>
+        <View style={styles.infoBox}>
+          <View style={styles.cards}>
+            {courses.map(course => (
+              <TouchableOpacity
+                key={course.courseCode}
+                style={styles.cardContainer}
+                onPress={() => setVisible(true)}
+              >
+                <Card containerStyle={styles.card}>
+                  <Text>{course.courseCode}</Text>
+                </Card>
+              </TouchableOpacity>
+            ))}
+          </View>
+        </View>
+      </View>
     </SafeAreaView>
   );
 }
@@ -135,13 +129,13 @@ const styles = StyleSheet.create({
     height: "100%",
     borderRadius: 4,
     width: "100%",
-    backgroundColor: "white",
-    marginTop: 270
+    backgroundColor: "white"
   },
   infoContainer: {
     position: "absolute",
     width: "100%",
-    height: "100%",
+    height: 300,
+    marginTop: 270,
     paddingLeft: 20,
     paddingRight: 20,
     zIndex: 5
