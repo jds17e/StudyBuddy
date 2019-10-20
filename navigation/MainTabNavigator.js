@@ -9,7 +9,6 @@ import {
 import TabBarIcon from "../components/TabBarIcon";
 import HomeScreen from "../screens/HomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
-import SettingsScreen from "../screens/SettingsScreen";
 
 const HomeStack = createStackNavigator(
   {
@@ -59,15 +58,17 @@ const tabNavigator = createMaterialTopTabNavigator({
 {
   tabBarPosition: 'bottom',
   tabBarOptions: {
-    activeTintColor: 'black',
-    inactiveTintColor: 'grey',
+    activeTintColor: 'white',
+    inactiveTintColor: '#424242',
     showIcon: true,
+    showLabel: false,
     style: {
-      backgroundColor: '#FFFFFF',
+      backgroundColor: '#757575',
       height: '8%',
     },
     indicatorStyle: {
-      height: 0,
+      height: "5%",
+      backgroundColor: 'white',
     },
     labelStyle: {
       fontSize: 12,
