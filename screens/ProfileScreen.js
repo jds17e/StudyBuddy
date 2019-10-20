@@ -16,8 +16,9 @@ import {
 import { Overlay, Card, Divider } from "react-native-elements";
 import CourseCard from "../components/CourseCard";
 import { FlatGrid } from "react-native-super-grid";
+import PendingRequests from "../components/PendingRequests";
 
-export default function ProfileScreen() {
+export default function ProfileScreen(props) {
   const courses = [
     { courseCode: "COP3014", teacher: "Larry Bird" },
     { courseCode: "ENC1105", teacher: "Lebron James" },
@@ -25,32 +26,35 @@ export default function ProfileScreen() {
     { courseCode: "CGS3066", teacher: "Bosh" },
     { courseCode: "COP4020", teacher: "Langley" }
   ];
-        const newCourses = [...courses, {courseCode: "", teacher: ""}]
+  const newCourses = [...courses, { courseCode: "", teacher: "" }];
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.header}>
-        <View style={styles.title}>
-          <Image
-            style={styles.img}
-            source={require("../assets/images/splash.png")}
-          />
-          <Text style={styles.name}>Lucas Albano</Text>
+      <ScrollView>
+        <View style={styles.header}>
+          <View style={styles.title}>
+            <Image
+              style={styles.img}
+              source={require("../assets/images/splash.png")}
+            />
+            <Text style={styles.name}>Lucas Albano</Text>
+          </View>
         </View>
-      </View>
-      <View style={styles.infoContainer}>
-        <View style={styles.infoBox}>
-          <FlatGrid
-            items={courses}
-            style={styles.gridView}
-            renderItem={({ item }) => (
-              <CourseCard key={item.courseCode} course={item} />
-            )}
-          />
-          {/* {courses.map(course => (
+        <View style={styles.infoContainer}>
+          <View style={styles.infoBox}>
+            <FlatGrid
+              items={newCourses}
+              style={styles.gridView}
+              renderItem={({ item }) => (
+                <CourseCard key={item.courseCode} course={item} />
+              )}
+            />
+            {/* {courses.map(course => (
               <CourseCard key={course.courseCode} course={course} />
             ))}*/}
+          </View>
         </View>
-      </View>
+        {props.pending !== true ? <PendingRequests name={"Lucas"} /> : null}
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -83,7 +87,7 @@ const styles = StyleSheet.create({
   },
   header: {
     width: "100%",
-    height: 300,
+    height: 200,
     backgroundColor: "#676767",
     justifyContent: "center",
     alignItems: "center"
@@ -97,17 +101,15 @@ const styles = StyleSheet.create({
     padding: 20
   },
   infoBox: {
-    height: "100%",
     borderRadius: 4,
     backgroundColor: "white"
   },
   infoContainer: {
-    position: "absolute",
     width: "100%",
     height: "auto",
-    paddingLeft: 20,
-    paddingRight: 20,
-    marginTop: 270,
+    paddingTop: 15,
+    paddingLeft: 15,
+    paddingRight: 15,
     zIndex: 5
   },
   gridView: {
