@@ -7,6 +7,7 @@ import {
   Text,
   FlatList,
   TouchableOpacity,
+  AsyncStorage,
   SafeAreaView,
   View,
 } from 'react-native';
@@ -30,11 +31,18 @@ export default function HomeScreen() {
             </Text>
             <Button
               buttonStyle={styles.cardButtonStyle}
-              title='VIEW NOW' />
+              title='VIEW NOW' 
+              onPress={() => showData()}/>
         </Card>
       </View>
     </SafeAreaView>
   );
+}
+async function showData(){
+  var Username = await AsyncStorage.getItem('Username');
+  var Firstname = await AsyncStorage.getItem('FirstName');
+  console.log("My username is: " + Username);
+  console.log("My FirstName is: " + Firstname);
 }
 
 HomeScreen.navigationOptions = {
