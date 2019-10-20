@@ -1,7 +1,7 @@
 import * as userActions from "./actions";
 import axios from "axios";
 
-export function getUser(Username, Password) {
+export function getUser(Username, Password, navigation) {
   return function(dispatch) {
     dispatch(userActions.fetchUserPending());
     axios
@@ -13,6 +13,7 @@ export function getUser(Username, Password) {
       .then(responseJson => {
         dispatch(userActions.fetchUserSuccess(JSON.parse(responseJson)));
       })
+      .then(() => navigation.navigate("Main"))
       .catch(function(error) {
         console.log(error);
       });

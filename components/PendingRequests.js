@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ScrollView, StyleSheet, View, Text, Image } from "react-native";
 import { Card, Button, ButtonGroup } from "react-native-elements";
+import { FlatGrid } from "react-native-super-grid";
 
 export default function PendingRequests(props) {
   const handleAccept = () => {
@@ -9,6 +10,10 @@ export default function PendingRequests(props) {
   const handleDecline = () => {
     console.log("decline");
   };
+  const buttons = [
+    { action: "Accept", func: handleAccept },
+    { action: "Decline", func: handleDecline }
+  ];
   return (
     <View style={styles.requestContainer}>
       <Card containerStyle={styles.request}>
@@ -18,17 +23,17 @@ export default function PendingRequests(props) {
         />
         <Text style={styles.title}>Study Request</Text>
         <Text style={styles.name}>{props.name}</Text>
-        <Button
-          onPress={handleDecline}
-          title="Decline"
-          containerStyle={styles.innerButton}
-          buttonStyle={styles.buttonColor}
-        />
-        <Button
-          onPress={handleAccept}
-          title="Accept"
-          containerStyle={styles.innerButton}
-          buttonStyle={styles.buttonColor}
+
+        <FlatGrid
+          items={buttons}
+          renderItem={({ item }) => (
+            <Button
+              onPress={item.func}
+              title={item.action}
+              containerStyle={styles.innerButton}
+              buttonStyle={styles.buttonColor}
+            />
+          )}
         />
       </Card>
     </View>
@@ -38,7 +43,7 @@ export default function PendingRequests(props) {
 const styles = StyleSheet.create({
   request: {
     margin: 0,
-    height: 100,
+    height: 125,
     borderRadius: 4
   },
   img: {
@@ -61,7 +66,8 @@ const styles = StyleSheet.create({
     paddingTop: 10
   },
   buttonContainer: {
-    borderColor: "#424242"
+    flex: 1,
+    flexWrap: "nowrap"
   },
   button: {
     backgroundColor: "#424242"
@@ -70,10 +76,10 @@ const styles = StyleSheet.create({
     color: "#424242"
   },
   buttonColor: {
-    backgroundColor: "#338e3c",
-    width: "50%"
+    backgroundColor: "#338e3c"
   },
   innerButton: {
+    flex: 1,
     width: "90%"
   }
 });

@@ -33,12 +33,6 @@ function WelcomeScreen({ navigation, getUser }) {
   const [user, setUser] = useState({});
   console.log("USER: ", user["UserID"]);
 
-const setVars = (Username, Password ,navigation) =>{
-    getUser(Username, Password)
-    navigation.navigate("Main")
-
-}
-
   return (
     <View style={styles.container}>
       <View style={styles.logoView}>
@@ -66,7 +60,7 @@ const setVars = (Username, Password ,navigation) =>{
           <Button
             title="Sign In"
             onPress={() => {
-              setVars(Username, Password, navigation);
+              getUser(Username, Password, navigation);
             }}
           />
         </View>
@@ -82,10 +76,6 @@ const setVars = (Username, Password ,navigation) =>{
     </View>
   );
 }
-
-
-
-
 
 WelcomeScreen.navigationOptions = {
   header: null
