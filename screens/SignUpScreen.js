@@ -46,7 +46,7 @@ function SignUpScreen({ navigation, signUpUser }) {
       enableOnAndroid={true}
     >
   			<View style={{height: "20%", alignItems: "center", paddingTop: "15%"}}>
-  				<Text style={{fontSize: 40, color: "white"}}> Sign Up! </Text>
+  				<Text style={{fontSize: 40, color: "#388e3c", fontWeight: "bold"}}> Sign Up! </Text>
   			</View>
 	  		<Input
 	  			label='First Name'
@@ -81,13 +81,13 @@ function SignUpScreen({ navigation, signUpUser }) {
 	  		</Input>
 	  		<View style={{flexDirection: "row", justifyContent: "center"}}>
 	  				<Button 
-	  				buttonStyle={{marginRight: 15, backgroundColor: "green", marginTop: "20%", width: 120, height: 50}}
+	  				buttonStyle={{marginRight: 15, backgroundColor: "#388e3c", marginTop: "20%", width: 120, height: 50}}
 	  				title="Submit"
 	  				titleStyle={{alignSelf: "center", marginBottom: 20}}
             onPress={() => {signUp(Username, Password, FirstName, LastName, Email)}}
 	  				/>
 	  				<Button 
-			  		buttonStyle={{marginLeft: 15, backgroundColor: "green", marginTop: "20%", width: 120, height: 50}}
+			  		buttonStyle={{marginLeft: 15, backgroundColor: "#388e3c", marginTop: "20%", width: 120, height: 50}}
 					title="Return"
 					titleStyle={{alignSelf: "center", marginBottom: 20}}
 					onPress={()=>{navigation.navigate("Welcome")}}

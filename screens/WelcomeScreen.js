@@ -4,10 +4,9 @@ import {
   View,
   StyleSheet,
   KeyboardAvoidingView,
-  Button,
   AsyncStorage
 } from "react-native";
-import { Overlay, Input, Image } from "react-native-elements";
+import { Overlay, Input, Image, Button } from "react-native-elements";
 import axios from "axios";
 import Icon from "react-native-vector-icons/FontAwesome";
 import { connect } from "react-redux";
@@ -62,11 +61,12 @@ const setVars = (Username, Password ,navigation) =>{
           secureTextEntry= {true}
         />
       </View>
-      <View style={styles.buttonView}>
+      <View style={{flexDirection: "row", justifyContent: "center"}}>
         
           <Button
             title="Sign In"
-            buttonStyle={{marginRight: 15, backgroundColor: "green", marginTop: "20%", width: 120, height: 50}}
+            buttonStyle={{marginRight: 15, backgroundColor: "#388e3c", marginTop: "50%", width: 120, height: 50}}
+            titleStyle={{alignSelf: "center", marginBottom: 20}}
             onPress={() => {
               setVars(Username, Password, navigation);
             }}
@@ -74,7 +74,8 @@ const setVars = (Username, Password ,navigation) =>{
         
           <Button
             title="Sign Up"
-            buttonStyle={{marginRight: 15, backgroundColor: "green", marginTop: "20%", width: 120, height: 50}}
+            buttonStyle={{marginRight: 15, backgroundColor: "#388e3c", marginTop: "50%", width: 120, height: 50}}
+            titleStyle={{alignSelf: "center", marginBottom: 20}}
             onPress={() => {
               navigation.navigate("SignUp");
             }}
