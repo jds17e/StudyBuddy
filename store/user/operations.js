@@ -18,3 +18,21 @@ export function getUser(Username, Password) {
       });
   };
 }
+
+export function signUpUser(Username, Password, Email, FirstName, LastName) {
+  return function(dispatch) {
+    axios
+      .post("http://poosproject.com/StudyBuddy/studysignup.php", {
+        Username: Username,
+        Password: Password,
+        FirstName: FirstName,
+        LastName: LastName,
+        Email: Email,
+        ConfirmPass: Password
+      })
+      .then(dispatch(getUser(Username, Password)))
+      .catch(function(error) {
+        console.log(error);
+      });
+  };
+}

@@ -17,8 +17,19 @@ import { Overlay, Card, Divider } from "react-native-elements";
 import CourseCard from "../components/CourseCard";
 import { FlatGrid } from "react-native-super-grid";
 import PendingRequests from "../components/PendingRequests";
+import { connect } from "react-redux";
+import { compose } from "redux";
 
-export default function ProfileScreen(props) {
+const mapStateToProps = ({ user }) => ({ user });
+
+const enhance = compose(
+  connect(
+    mapStateToProps,
+    null
+  )
+);
+
+function ProfileScreen(props) {
   const courses = [
     { courseCode: "COP3014", teacher: "Larry Bird" },
     { courseCode: "ENC1105", teacher: "Lebron James" },
@@ -63,6 +74,8 @@ ProfileScreen.navigationOptions = {
   title: "",
   header: null
 };
+
+export default enhance(ProfileScreen);
 
 const styles = StyleSheet.create({
   classes: {
