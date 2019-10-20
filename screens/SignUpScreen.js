@@ -34,7 +34,6 @@ function SignUpScreen({ navigation, signUpUser }) {
   const [Password, setPassword] = useState("");
   const signUp = (Username, Password, Email, FirstName, LastName) => {
     signUpUser(Username, Password, Email, FirstName, LastName);
-    navigation.navigate("Main");
   };
 
   return (
