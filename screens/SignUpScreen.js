@@ -44,70 +44,55 @@ function SignUpScreen({ navigation, signUpUser }) {
       enableAutomaticScroll={true}
       enableOnAndroid={true}
     >
-      <View style={{ height: "20%", alignItems: "center", paddingTop: "15%" }}>
-        <Text style={{ fontSize: 40, color: "white" }}> Sign Up! </Text>
-      </View>
-      <Input
-        label="First Name"
-        inputStyle={styles.inputStyle}
-        containerStyle={styles.inputContainerStyle}
-        onChangeText={text => setFirstName(text)}
-      ></Input>
-      <Input
-        label="Last Name"
-        inputStyle={styles.inputStyle}
-        containerStyle={styles.inputContainerStyle}
-        onChangeText={text => setLastName(text)}
-      ></Input>
-      <Input
-        label="Email"
-        inputStyle={styles.inputStyle}
-        containerStyle={styles.inputContainerStyle}
-        onChangeText={text => setEmail(text)}
-      ></Input>
-      <Input
-        label="Username"
-        inputStyle={styles.inputStyle}
-        containerStyle={styles.inputContainerStyle}
-        onChangeText={text => setUsername(text)}
-      ></Input>
-      <Input
-        label="Password"
-        inputStyle={styles.inputStyle}
-        containerStyle={styles.inputContainerStyle}
+  			<View style={{height: "20%", alignItems: "center", paddingTop: "15%"}}>
+  				<Text style={{fontSize: 40, color: "#388e3c", fontWeight: "bold"}}> Sign Up! </Text>
+  			</View>
+	  		<Input
+	  			label='First Name'
+  				inputStyle={styles.inputStyle}
+  				containerStyle={styles.inputContainerStyle}
+          onChangeText={text => setFirstName(text)}>
+	  		</Input>
+	  		<Input
+	  			label='Last Name'
+  				inputStyle={styles.inputStyle}
+  				containerStyle={styles.inputContainerStyle}
+          onChangeText={text => setLastName(text)}>
+	  		</Input>
+	  		<Input
+	  			label='Email'
+				inputStyle={styles.inputStyle}
+				containerStyle={styles.inputContainerStyle}
+        onChangeText={text => setEmail(text)}>
+	  		</Input>
+	  		<Input
+	  			label='Username'
+				inputStyle={styles.inputStyle}
+				containerStyle={styles.inputContainerStyle}
+        onChangeText={text => setUsername(text)}>
+	  		</Input>
+	  		<Input
+	  		label='Password'
+				inputStyle={styles.inputStyle}
+				containerStyle={styles.inputContainerStyle}
         onChangeText={text => setPassword(text)}
-      ></Input>
-      <View style={{ flexDirection: "row", justifyContent: "center" }}>
-        <Button
-          buttonStyle={{
-            marginRight: 15,
-            backgroundColor: "green",
-            marginTop: "20%",
-            width: 120,
-            height: 50
-          }}
-          title="Submit"
-          titleStyle={{ alignSelf: "center", marginBottom: 20 }}
-          onPress={() => {
-            signUp(Username, Password, FirstName, LastName, Email);
-          }}
-        />
-        <Button
-          buttonStyle={{
-            marginLeft: 15,
-            backgroundColor: "green",
-            marginTop: "20%",
-            width: 120,
-            height: 50
-          }}
-          title="Return"
-          titleStyle={{ alignSelf: "center", marginBottom: 20 }}
-          onPress={() => {
-            navigation.navigate("Welcome");
-          }}
-        />
-      </View>
-    </KeyboardAwareScrollView>
+        secureTextEntry= {true}>
+	  		</Input>
+	  		<View style={{flexDirection: "row", justifyContent: "center"}}>
+	  				<Button 
+	  				buttonStyle={{marginRight: 15, backgroundColor: "#388e3c", marginTop: "20%", width: 120, height: 50}}
+	  				title="Submit"
+	  				titleStyle={{alignSelf: "center", marginBottom: 20}}
+            onPress={() => {signUp(Username, Password, FirstName, LastName, Email)}}
+	  				/>
+	  				<Button 
+			  		buttonStyle={{marginLeft: 15, backgroundColor: "#388e3c", marginTop: "20%", width: 120, height: 50}}
+					title="Return"
+					titleStyle={{alignSelf: "center", marginBottom: 20}}
+					onPress={()=>{navigation.navigate("Welcome")}}
+			  		/>
+	  		</View>
+	  </KeyboardAwareScrollView>
   );
 }
 

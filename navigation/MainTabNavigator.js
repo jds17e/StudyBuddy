@@ -58,7 +58,7 @@ const tabNavigator = createMaterialTopTabNavigator({
 {
   tabBarPosition: 'bottom',
   tabBarOptions: {
-    activeTintColor: 'white',
+    activeTintColor: '#388e3c',
     inactiveTintColor: '#424242',
     showIcon: true,
     showLabel: false,
@@ -68,7 +68,7 @@ const tabNavigator = createMaterialTopTabNavigator({
     },
     indicatorStyle: {
       height: "5%",
-      backgroundColor: 'white',
+      backgroundColor: '#388e3c',
     },
     labelStyle: {
       fontSize: 12,
