@@ -59,25 +59,27 @@ const setVars = (Username, Password ,navigation) =>{
           inputStyle={styles.inputStyle}
           containerStyle={styles.inputContainerStyle}
           onChangeText={text => setPassword(text)}
+          secureTextEntry= {true}
         />
       </View>
       <View style={styles.buttonView}>
-        <View style={styles.buttonStyle}>
+        
           <Button
             title="Sign In"
+            buttonStyle={{marginRight: 15, backgroundColor: "green", marginTop: "20%", width: 120, height: 50}}
             onPress={() => {
               setVars(Username, Password, navigation);
             }}
           />
-        </View>
-        <View style={styles.buttonStyle}>
+        
           <Button
             title="Sign Up"
+            buttonStyle={{marginRight: 15, backgroundColor: "green", marginTop: "20%", width: 120, height: 50}}
             onPress={() => {
               navigation.navigate("SignUp");
             }}
           />
-        </View>
+        
       </View>
     </View>
   );

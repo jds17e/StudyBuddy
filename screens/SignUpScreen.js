@@ -51,7 +51,8 @@ export default function SignUpScreen({navigation}) {
 	  		label='Password'
 				inputStyle={styles.inputStyle}
 				containerStyle={styles.inputContainerStyle}
-        onChangeText={text => setPassword(text)}>
+        onChangeText={text => setPassword(text)}
+        secureTextEntry= {true}>
 	  		</Input>
 	  		<View style={{flexDirection: "row", justifyContent: "center"}}>
 	  				<Button 
