@@ -8,7 +8,9 @@ import {
   SafeAreaView,
   Image,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
+  StatusBar,
+  Platform
 } from "react-native";
 import Modal from "react-native-modal";
 import { Overlay, Card, Divider } from "react-native-elements";
@@ -111,12 +113,13 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: "#424242"
+    backgroundColor: "#424242",
+    paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
   },
   header: {
     width: "100%",
     height: 300,
-    backgroundColor: "#424242",
+    backgroundColor: "#676767",
     justifyContent: "center",
     alignItems: "center"
   },
