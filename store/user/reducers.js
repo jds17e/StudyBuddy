@@ -18,7 +18,7 @@ function user(state = initialUser, action) {
       return {
         ...state,
         pending: false,
-        user: action.payload
+        user: { ...action.payload }
       };
     case types.FETCH_USER_ERROR:
       return {

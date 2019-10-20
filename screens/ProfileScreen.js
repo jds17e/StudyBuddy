@@ -38,6 +38,7 @@ function ProfileScreen(props) {
     { courseCode: "COP4020", teacher: "Langley" }
   ];
   const newCourses = [...courses, { courseCode: "", teacher: "" }];
+  console.log("profile: ", props.user.user);
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
@@ -47,7 +48,7 @@ function ProfileScreen(props) {
               style={styles.img}
               source={require("../assets/images/splash.png")}
             />
-            <Text style={styles.name}>Lucas Albano</Text>
+            <Text style={styles.name}>{props.user.user.Username}</Text>
           </View>
         </View>
         <View style={styles.infoContainer}>
