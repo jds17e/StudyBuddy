@@ -3,6 +3,7 @@ import {
   Animated,
   ScrollView,
   StyleSheet,
+  ListView,
   View,
   Text,
   SafeAreaView,
@@ -14,6 +15,7 @@ import {
 } from "react-native";
 import { Overlay, Card, Divider } from "react-native-elements";
 import CourseCard from "../components/CourseCard";
+import { FlatGrid } from "react-native-super-grid";
 
 export default function ProfileScreen() {
   const courses = [
@@ -23,6 +25,7 @@ export default function ProfileScreen() {
     { courseCode: "CGS3066", teacher: "Bosh" },
     { courseCode: "COP4020", teacher: "Langley" }
   ];
+        const newCourses = [...courses, {courseCode: "", teacher: ""}]
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.header}>
@@ -36,11 +39,16 @@ export default function ProfileScreen() {
       </View>
       <View style={styles.infoContainer}>
         <View style={styles.infoBox}>
-          <View style={styles.cards}>
-            {courses.map(course => (
+          <FlatGrid
+            items={courses}
+            style={styles.gridView}
+            renderItem={({ item }) => (
+              <CourseCard key={item.courseCode} course={item} />
+            )}
+          />
+          {/* {courses.map(course => (
               <CourseCard key={course.courseCode} course={course} />
-            ))}
-          </View>
+            ))}*/}
         </View>
       </View>
     </SafeAreaView>
@@ -96,15 +104,13 @@ const styles = StyleSheet.create({
   infoContainer: {
     position: "absolute",
     width: "100%",
-    height: 400,
+    height: "auto",
     paddingLeft: 20,
     paddingRight: 20,
     marginTop: 270,
     zIndex: 5
   },
-  cards: {
-    flex: 1,
-    flexWrap: "wrap",
-    padding: 5
+  gridView: {
+    width: "100%"
   }
 });
