@@ -37,8 +37,8 @@ export default function ProfileScreen() {
             <Text style={styles.name}>Lucas Albano</Text>
           </View>
         </View>
-
-        <View style={styles.infoContainer}>
+      </ScrollView>
+      <View style={styles.infoContainer}>
           <View style={styles.infoBox}>
             <View style={styles.titleContainer}>
               <Text style={styles.classes}>Classes</Text>
@@ -60,7 +60,6 @@ export default function ProfileScreen() {
             </View>
           </View>
         </View>
-      </ScrollView>
       <Modal
         isVisible={isVisible}
         onSwipeComplete={() => setVisible(false)}
@@ -136,14 +135,14 @@ const styles = StyleSheet.create({
     borderRadius: 4,
     width: "100%",
     backgroundColor: "white",
-    marginTop: 270
   },
   infoContainer: {
     position: "absolute",
     width: "100%",
-    height: "100%",
+    height: 300,
     paddingLeft: 20,
     paddingRight: 20,
+    marginTop:270,
     zIndex: 5
   },
   card: {
