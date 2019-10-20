@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Text, View, StyleSheet, KeyboardAvoidingView, Button } from 'react-native';
 import { Overlay, Input, Image } from 'react-native-elements';
+import axios from 'axios';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 export default function WelcomeScreen({navigation}) {
+
+  const [Username, setUsername] = useState("");
+  const [Password, setPassword] = useState("");
  
   return (
 	  	<View style={styles.container}>
@@ -19,18 +23,20 @@ export default function WelcomeScreen({navigation}) {
 					label='Username'
 					inputStyle={styles.inputStyle}
 					containerStyle={styles.inputContainerStyle}
+					onChangeText={text => setUsername(text)}
 				/>
 				<Input
 					label='Password'
 					inputStyle={styles.inputStyle}
 					containerStyle={styles.inputContainerStyle}
+          onChangeText={text => setPassword(text)}
 				/>
 	  		</View>
 	  		<View style={styles.buttonView}>
 	  			<View style={styles.buttonStyle}>
 	  				<Button  
 	  					title="Sign In"	
-	  					onPress={() => signIn()}
+	  					onPress={() => {signIn(Username, Password)}}
 	  				/>
 	  			</View>
 	  			<View style={styles.buttonStyle}>
@@ -42,6 +48,24 @@ export default function WelcomeScreen({navigation}) {
 	  		</View>
 	  	</View>
   	);
+}
+
+async function signIn(Username, Password){
+  try{
+    fetch('http://poosproject.com/StudyBuddy/studylogin.php', {
+      "Username": Username,
+      "Password": Password
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+        console.log(responseJson.FirstName);
+    })
+    .catch(function (error) {
+    console.log(error);
+  });
+  }catch(error){
+    console.log(error)
+  }
 }
 
 WelcomeScreen.navigationOptions = {
