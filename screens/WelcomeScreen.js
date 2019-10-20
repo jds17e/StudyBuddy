@@ -10,12 +10,35 @@ import {
 import { Overlay, Input, Image } from "react-native-elements";
 import axios from "axios";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { connect } from "react-redux";
+import { compose } from "redux";
+import { userOperations } from "../store/user";
 
-export default function WelcomeScreen({ navigation }) {
+const mapStateToProps = ({ user }) => ({ user });
+
+const actions = {
+  getUser: userOperations.getUser
+};
+
+const enhance = compose(
+  connect(
+    mapStateToProps,
+    actions
+  )
+);
+
+function WelcomeScreen({ navigation, getUser }) {
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
   const [user, setUser] = useState({});
-  //console.log("USER: ", JSON.parse(user));
+  console.log("USER: ", user["UserID"]);
+
+const setVars = (Username, Password ,navigation) =>{
+    getUser(Username, Password)
+    navigation.navigate("Main")
+
+}
+
   return (
     <View style={styles.container}>
       <View style={styles.logoView}>
@@ -43,7 +66,7 @@ export default function WelcomeScreen({ navigation }) {
           <Button
             title="Sign In"
             onPress={() => {
-              signIn(Username, Password, navigation);
+              setVars(Username, Password, navigation);
             }}
           />
         </View>
@@ -60,44 +83,15 @@ export default function WelcomeScreen({ navigation }) {
   );
 }
 
-async function signIn(Username, Password, navigation) {
-  try {
-    axios.post("http://poosproject.com/StudyBuddy/studylogin.php", {
-        Username: Username,
-        Password: Password
-      })
-      .then(response => response.data)
-      .then(res => setVars(res,navigation))
-      .catch(function(error) {
-        console.log(error);
-      });
-  } catch (error) {
-    console.log(error);
-  }
-}
 
 
-async function setVars(res,navigation){
-  try{
-    await AsyncStorage.setItem('Username', JSON.parse(res).Username);
-    await AsyncStorage.setItem('FirstName', JSON.parse(res).FirstName);
-    await AsyncStorage.setItem('LastName', JSON.parse(res).LastName);
-    await AsyncStorage.setItem('Email', JSON.parse(res).Email);
-    await AsyncStorage.setItem('Id', JSON.parse(res).UserID);
-    await AsyncStorage.setItem('Year', JSON.parse(res).Year);
-    await AsyncStorage.setItem('School', JSON.parse(res).School);
-    await AsyncStorage.setItem('StudyFreq', JSON.parse(res).StudyFreq);
-    await AsyncStorage.setItem('Where', JSON.parse(res).Where);
-    await AsyncStorage.setItem('LastActive', JSON.parse(res).LastActive);
-    navigation.navigate("Main")
-  }catch(error){
-    console.log(error);
-  }   
-}
+
 
 WelcomeScreen.navigationOptions = {
   header: null
 };
+
+export default enhance(WelcomeScreen);
 
 const styles = StyleSheet.create({
   container: {
