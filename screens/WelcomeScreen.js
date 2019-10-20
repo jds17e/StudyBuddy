@@ -8,7 +8,6 @@ export default function WelcomeScreen() {
  
   return (
   	<View style={styles.container}>
-  	<KeyboardAvoidingView behavior="padding" style={styles.keyboardStyle}>
   		<View style={styles.logoView}>
   			<Image
 			  source={require("../assets/images/Logo.jpg")}
@@ -27,7 +26,6 @@ export default function WelcomeScreen() {
 				containerStyle={styles.inputContainerStyle}
 			/>
   		</View>
-  	</KeyboardAvoidingView>
   		<View style={styles.buttonView}>
   			
   		</View>
@@ -66,8 +64,5 @@ const styles = StyleSheet.create({
   	marginBottom: "10%",
   	width: "80%",
   	alignSelf: "center",
-  },
-  keyboardStyle: {
-  
   }
 });

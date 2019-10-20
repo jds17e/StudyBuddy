@@ -12,58 +12,33 @@ import {
   StatusBar,
   Platform
 } from "react-native";
-import Modal from "react-native-modal";
 import { Overlay, Card, Divider } from "react-native-elements";
+import CourseCard from "../components/CourseCard";
 
 export default function ProfileScreen() {
   const courses = [
-    { courseCode: "COP3014", title: "Programming I" },
-    { courseCode: "ENC1105", title: "English" },
-    { courseCode: "CEN4020", title: "Software Engineering" },
-    { courseCode: "CGS3066", title: "Web Design and Programming" }
+    { courseCode: "COP3014", teacher: "Larry Bird" },
+    { courseCode: "ENC1105", teacher: "Lebron James" },
+    { courseCode: "CEN4020", teacher: "Dwyane Wade" },
+    { courseCode: "CGS3066", teacher: "Bosh" },
+    { courseCode: "COP4020", teacher: "Langley" }
   ];
-  const devWidth = Dimensions.get("window").width;
-  const devHeight = Dimensions.get("window").height;
-  const [isVisible, setVisible] = useState(false);
   return (
     <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <View style={styles.header}>
-          <View style={styles.title}>
-            <Image
-              style={styles.img}
-              source={require("../assets/images/splash.png")}
-            />
-            <Text style={styles.name}>Lucas Albano</Text>
-          </View>
+      <View style={styles.header}>
+        <View style={styles.title}>
+          <Image
+            style={styles.img}
+            source={require("../assets/images/splash.png")}
+          />
+          <Text style={styles.name}>Lucas Albano</Text>
         </View>
-      </ScrollView>
-      <Modal
-        isVisible={isVisible}
-        onSwipeComplete={() => setVisible(false)}
-        swipeDirection={["down"]}
-        onRequestClose={() => setVisible(false)}
-        deviceWidth={devWidth}
-        devHeight={devHeight}
-        style={styles.modal}
-      >
-        <View style={styles.modalContent}>
-          <Text>Test</Text>
-        </View>
-      </Modal>
+      </View>
       <View style={styles.infoContainer}>
         <View style={styles.infoBox}>
           <View style={styles.cards}>
             {courses.map(course => (
-              <TouchableOpacity
-                key={course.courseCode}
-                style={styles.cardContainer}
-                onPress={() => setVisible(true)}
-              >
-                <Card containerStyle={styles.card}>
-                  <Text>{course.courseCode}</Text>
-                </Card>
-              </TouchableOpacity>
+              <CourseCard key={course.courseCode} course={course} />
             ))}
           </View>
         </View>
@@ -78,18 +53,6 @@ ProfileScreen.navigationOptions = {
 };
 
 const styles = StyleSheet.create({
-  modal: {
-    margin: 0,
-    marginTop: 80,
-    justifyContent: "flex-end"
-  },
-  modalContent: {
-    flex: 1,
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    padding: 15,
-    backgroundColor: "white"
-  },
   classes: {
     fontSize: 20
   },
@@ -128,31 +91,20 @@ const styles = StyleSheet.create({
   infoBox: {
     height: "100%",
     borderRadius: 4,
-    width: "100%",
     backgroundColor: "white"
   },
   infoContainer: {
     position: "absolute",
     width: "100%",
-    height: 300,
-    marginTop: 270,
+    height: 400,
     paddingLeft: 20,
     paddingRight: 20,
+    marginTop: 270,
     zIndex: 5
-  },
-  card: {
-    width: "100%",
-    height: 100,
-    margin: 0
-  },
-  cardContainer: {
-    width: "50%",
-    paddingLeft: 10,
-    paddingBottom: 10
   },
   cards: {
     flex: 1,
     flexWrap: "wrap",
-    paddingRight: 10
+    padding: 5
   }
 });
