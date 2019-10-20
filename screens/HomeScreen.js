@@ -31,19 +31,13 @@ export default function HomeScreen() {
             </Text>
             <Button
               buttonStyle={styles.cardButtonStyle}
-              title='VIEW NOW' 
-              onPress={() => showData()}/>
+              title='VIEW NOW' />
         </Card>
       </View>
     </SafeAreaView>
   );
 }
-async function showData(){
-  var Username = await AsyncStorage.getItem('Username');
-  var Firstname = await AsyncStorage.getItem('FirstName');
-  console.log("My username is: " + Username);
-  console.log("My FirstName is: " + Firstname);
-}
+
 
 HomeScreen.navigationOptions = {
   header: null,
